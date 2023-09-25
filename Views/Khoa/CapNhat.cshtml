@@ -1,0 +1,35 @@
+﻿@model QuanLySinhVien.Models.Entity.Khoa
+
+@{
+    ViewData["Title"] = "CapNhat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="col-6 px-5 pt-5 border rounded-3 shadow-lg">
+        <h2 class="text-center fw-bold pb-4">Cập nhật thông tin khoa</h2>
+        <hr />
+        
+        <form action="/Khoa/CapNhat" method="post">
+            <input type="text" id="id" name="id" value="@Model.Id" aria-describedby="text" hidden>
+            <div class="mb-4">
+                <label for="makhoa" class="form-label fw-bolder">Mã Khoa</label>
+                <input type="text" class="form-control" id="makhoa" name="makhoa" value="@Model.MaKhoa" aria-describedby="text">
+            </div>
+            <div class="mb-4">
+                <label for="tenkhoa" class="form-label fw-bolder">Tên Khoa</label>
+                <input type="text" class="form-control" id="tenkhoa" name="tenkhoa" value="@Model.TenKhoa" aria-describedby="text">
+            </div>
+            <div class="mb-4">
+                <label for="sodienthoai" class="form-label fw-bolder">Số điện thoại</label>
+                <input type="number" class="form-control" id="sodienthoai" name="sodienthoai" min="0" value="@Model.Sdt" aria-describedby="text">
+            </div>
+            <hr />
+            <div class="d-flex align-items-center justify-content-center my-5 gap-5">
+                <button type="submit" id="themgiohang" class="btn btn-primary px-4 py-2">Cập nhật thông tin khoa</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
