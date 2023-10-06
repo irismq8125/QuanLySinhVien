@@ -4,7 +4,15 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<form class="col-3 d-flex flex-row gap-2" style="align-items: baseline;"
+    action="/Khoa/Index"
+    method="get"
+>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="timkiem" name="timkiem" aria-describedby="tim kiem noi dung">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 <table class="table table-striped overflow-scroll">
     <thead>
         <tr class="text-center">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 
 namespace QuanLySinhVien.Models.Entity;
@@ -24,4 +25,5 @@ public partial class Khoa
     [Unicode(false)]
     public string? Sdt { get; set; }
 
+    public string Filter { get; set; }
 }

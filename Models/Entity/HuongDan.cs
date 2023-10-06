@@ -27,4 +27,5 @@ public partial class HuongDan
     public string? MaSv { get; set; }
 
     public double? KetQua { get; set; }
+    public string Filter { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Common.Utilities;
+using Microsoft.AspNetCore.Mvc;
 using QuanLySinhVien.Models.Entity;
 
 namespace QuanLySinhVien.Controllers
@@ -10,10 +11,18 @@ namespace QuanLySinhVien.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string timkiem)
         {
-            var items = _context.Khoas.ToList();
-            return View(items);
+            if (String.IsNullOrWhiteSpace(timkiem))
+            {
+                var items1 = _context.Khoas.ToList();
+                return View(items1);
+            }
+            else
+            {
+                var items2 = _context.Khoas.Where(c => c.Filter.Contains(timkiem)).ToList();
+                return View(items2);
+            }
         }
         public IActionResult Them()
         {
@@ -31,10 +40,12 @@ namespace QuanLySinhVien.Controllers
                 khoa.MaKhoa = makhoa;
                 khoa.TenKhoa = tenkhoa;
                 khoa.Sdt = sodienthoai;
+                khoa.Filter = makhoa + " " + tenkhoa.ToLower() + " " + Utility.ConvertToUnsign(tenkhoa.ToLower()) + " " + sodienthoai;
 
                 _context.Add(khoa);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
+                //return Redirect("/Khoa/Index");
             }
             return View();
         }
@@ -52,7 +63,7 @@ namespace QuanLySinhVien.Controllers
             item.Sdt = sodienthoai;
             _context.Update(item);
             _context.SaveChanges();
-            return View(item);
+            return RedirectToAction("Index");
         }
         public IActionResult Xoa(string id)
         {

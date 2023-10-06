@@ -24,4 +24,5 @@ public partial class DeTai
 
     [StringLength(250)]
     public string? NoiThucTap { get; set; }
+    public string Filter { get; set; }
 }
