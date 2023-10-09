@@ -30,5 +30,5 @@ public partial class SinhVien
     [StringLength(10)]
     [Unicode(false)]
     public string? MaKhoa { get; set; }
-    public string Filter { get; set; }
+    public string? Filter { get; set; }
 }

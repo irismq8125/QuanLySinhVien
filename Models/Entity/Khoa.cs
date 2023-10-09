@@ -25,5 +25,5 @@ public partial class Khoa
     [Unicode(false)]
     public string? Sdt { get; set; }
 
-    public string Filter { get; set; }
+    public string? Filter { get; set; }
 }
