@@ -4,6 +4,7 @@ using QuanLySinhVien.Models.Entity;
 
 namespace QuanLySinhVien.Controllers
 {
+    [Route("/quan-ly-khoa")]
     public class KhoaController : Controller
     {
         private readonly QuanLySinhVienContext _context;
@@ -11,6 +12,7 @@ namespace QuanLySinhVien.Controllers
         {
             _context = context;
         }
+        [Route("danh-sach")]
         public IActionResult Index(string timkiem)
         {
             if (String.IsNullOrWhiteSpace(timkiem))
@@ -24,10 +26,12 @@ namespace QuanLySinhVien.Controllers
                 return View(items2);
             }
         }
+        [Route("them-khoa")]
         public IActionResult Them()
         {
             return View();
         }
+        [Route("them-khoa")]
         [HttpPost]
         public IActionResult Them(string makhoa, string tenkhoa, string sodienthoai)
         {

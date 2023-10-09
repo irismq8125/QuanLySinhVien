@@ -12,7 +12,7 @@ using QuanLySinhVien.Models.Entity;
 namespace QuanLySinhVien.Migrations
 {
     [DbContext(typeof(QuanLySinhVienContext))]
-    [Migration("20231009105416_init")]
+    [Migration("20231009113017_init")]
     partial class init
     {
         /// <inheritdoc />
