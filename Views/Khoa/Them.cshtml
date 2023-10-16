@@ -9,7 +9,7 @@
     <div class="col-6 px-5 pt-5 border rounded-3 shadow-lg">
         <h2 class="text-center fw-bold pb-4">Thêm thông tin khoa</h2>
         <hr />
-        <form action="/Khoa/Them" method="post">
+        <form action="/quan-ly-khoa/them-khoa" method="post" enctype="multipart/form-data">
             <div class="mb-4">
                 <label for="makhoa" class="form-label fw-bolder">Mã Khoa</label>
                 <input type="text" class="form-control" id="makhoa" name="makhoa" value="" aria-describedby="text">
@@ -22,6 +22,13 @@
                 <label for="sodienthoai" class="form-label fw-bolder">Số điện thoại</label>
                 <input type="number" class="form-control" id="sodienthoai" name="sodienthoai" min="0" value="" aria-describedby="text">
             </div>
+            <div class="mb-4">
+                <label for="hinhanh" class="form-label fw-bolder">Ảnh đại diện</label>
+                <div class="d-flex justify-content-center align-items-center py-2">
+                    <img id="showimage" style="width: 450px; height: 300px;" src="~/images/noimage.jpg" alt="..." />
+                </div>
+                <input type="file" class="form-control" id="hinhanh" name="hinhanh" onchange="readURL(this)" aria-describedby="image">
+            </div>
             <hr />
             <div class="d-flex align-items-center justify-content-center my-5 gap-5">
                 <button type="submit" id="themgiohang" class="btn btn-primary px-4 py-2">Thêm thông tin khoa</button>
@@ -29,4 +36,16 @@
         </form>
     </div>
 </div>
+
+<script>
+    function readURL(input){
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#showimage').attr('src', e.target.result).width(450).height(300);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 

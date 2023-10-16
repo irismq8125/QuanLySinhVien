@@ -26,4 +26,6 @@ public partial class Khoa
     public string? Sdt { get; set; }
 
     public string? Filter { get; set; }
+
+    public string? UrlImage { get; set; }
 }

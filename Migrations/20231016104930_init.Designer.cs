@@ -12,7 +12,7 @@ using QuanLySinhVien.Models.Entity;
 namespace QuanLySinhVien.Migrations
 {
     [DbContext(typeof(QuanLySinhVienContext))]
-    [Migration("20231009113017_init")]
+    [Migration("20231016104930_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace QuanLySinhVien.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLySinhVien.Models.Entity;
 
@@ -11,9 +12,11 @@ using QuanLySinhVien.Models.Entity;
 namespace QuanLySinhVien.Migrations
 {
     [DbContext(typeof(QuanLySinhVienContext))]
-    partial class QuanLySinhVienContextModelSnapshot : ModelSnapshot
+    [Migration("20231016121555_editKhoa")]
+    partial class editKhoa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
