@@ -15,9 +15,11 @@ public partial class Khoa
 
     [StringLength(10)]
     [Unicode(false)]
+    [Required(ErrorMessage = "Không được phép để trống!")]
     public string? MaKhoa { get; set; }
 
     [StringLength(150)]
+    [Required]
     public string? TenKhoa { get; set; }
 
     [Column("SDT")]

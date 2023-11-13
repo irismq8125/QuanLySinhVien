@@ -66,7 +66,8 @@ namespace QuanLySinhVien.Migrations
                     MaKhoa = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
                     TenKhoa = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     SDT = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
-                    Filter = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Filter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

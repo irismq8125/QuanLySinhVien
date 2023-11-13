@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanLySinhVien.Models.Entity.Khoa>
+﻿@model List<QuanLySinhVien.Models.Khoa.ViewModelKhoa>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,11 +37,11 @@
                 <tr>
                     <td class="text-center">@i</td>
                     <td class="text-center">
-                        <img style="width: 50px; height: 50px;" src="@item.UrlImage"/>
+                        <img style="width: 50px; height: 50px;" src="`http://localhost:5275/` + @item.UrlImages[0].UrlImage" />
                     </td>
                     <td class="text-center">@item.MaKhoa</td>
                     <td class="text-center">@item.TenKhoa</td>
-                    <td class="text-center">@item.Sdt</td>
+                    <td class="text-center">@item.SDT</td>
                     @* <td class="text-center @((bool)item.IsActive ? "text-success" : "text-danger")">
                         @((bool)item.IsActive ? "Kích hoạt" : "Tạm khóa")
                     </td> *@
@@ -65,5 +65,8 @@
         }
     </tbody>
 </table>
+<script>
+
+</script>
 
 

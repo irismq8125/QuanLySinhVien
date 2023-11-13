@@ -1,4 +1,4 @@
-﻿
+﻿@model QuanLySinhVien.Models.Khoa.InputKhoa
 
 @{
     ViewData["Title"] = "Them";
@@ -9,25 +9,26 @@
     <div class="col-6 px-5 pt-5 border rounded-3 shadow-lg">
         <h2 class="text-center fw-bold pb-4">Thêm thông tin khoa</h2>
         <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
         <form action="/quan-ly-khoa/them-khoa" method="post" enctype="multipart/form-data">
             <div class="mb-4">
-                <label for="makhoa" class="form-label fw-bolder">Mã Khoa</label>
-                <input type="text" class="form-control" id="makhoa" name="makhoa" value="" aria-describedby="text">
+                <label asp-for="MaKhoa" class="form-label fw-bolder">Mã Khoa</label>
+                <input asp-for="MaKhoa" type="text" class="form-control" id="makhoa"  value="" aria-describedby="text">
             </div>
             <div class="mb-4">
-                <label for="tenkhoa" class="form-label fw-bolder">Tên Khoa</label>
-                <input type="text" class="form-control" id="tenkhoa" name="tenkhoa" value="" aria-describedby="text">
+                <label asp-for="TenKhoa"  class="form-label fw-bolder">Tên Khoa</label>
+                <input asp-for="TenKhoa" type="text" class="form-control" id="tenkhoa" value="" aria-describedby="text">
             </div>
             <div class="mb-4">
-                <label for="sodienthoai" class="form-label fw-bolder">Số điện thoại</label>
-                <input type="number" class="form-control" id="sodienthoai" name="sodienthoai" min="0" value="" aria-describedby="text">
+                <label asp-for="Sdt" class="form-label fw-bolder">Số điện thoại</label>
+                <input asp-for="Sdt" type="number" class="form-control" id="sdt" min="0" value="" aria-describedby="text">
             </div>
             <div class="mb-4">
-                <label for="hinhanh" class="form-label fw-bolder">Ảnh đại diện</label>
+                <label asp-for="hinhanh" class="form-label fw-bolder">Ảnh đại diện</label>
                 <div class="d-flex justify-content-center align-items-center py-2">
                     <img id="showimage" style="width: 450px; height: 300px;" src="~/images/noimage.jpg" alt="..." />
                 </div>
-                <input type="file" class="form-control" id="hinhanh" name="hinhanh" onchange="readURL(this)" aria-describedby="image">
+                <input asp-for="hinhanh" type="file" class="form-control" id="hinhanh" onchange="readURL(this)" aria-describedby="image">
             </div>
             <hr />
             <div class="d-flex align-items-center justify-content-center my-5 gap-5">
