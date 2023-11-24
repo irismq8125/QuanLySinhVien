@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace QuanLySinhVien.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Area("Admin")]
-    [Route("/quan-tri-vien")]
+    [Route("quan-tri-vien")]
     public class HomeController : Controller
     {
         [Route("danh-sach")]

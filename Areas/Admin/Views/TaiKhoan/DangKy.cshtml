@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DangNhap</title>
+    <link rel="stylesheet" href="~/css/taikhoan.css" asp-append-version="true" />
+</head>
+<body style="height: 760px; display: flex; justify-content: center; align-items: center;">
+    <div class="form-box">
+        <form class="form" asp-area="Admin" asp-controller="TaiKhoan" asp-action="DangKy" method="post">
+            <span class="title">Sign up</span>
+            <span class="subtitle">Create a free account with your email.</span>
+            <div class="form-container">
+                <input type="text" name="Username" class="input" placeholder="Full Name">
+                <input type="email" name="Email" class="input" placeholder="Email">
+                <input type="password" name="password" class="input" placeholder="Password">
+                <input type="text" name="role" class="input" placeholder="Role">
+            </div>
+            <button type="submit">Sign up</button>
+        </form>
+        <div class="form-section">
+            <p>Have an account? <a asp-area="Admin" asp-controller="TaiKhoan" asp-action="DangNhap">Log in</a> </p>
+        </div>
+    </div>
+</body>
+</html>
