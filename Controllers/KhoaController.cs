@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NuGet.Common;
 using NuGet.Protocol;
 using QuanLySinhVien.Common;
 using QuanLySinhVien.Models.Entity;
 using QuanLySinhVien.Models.Khoa;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace QuanLySinhVien.Controllers
 {
@@ -38,8 +40,9 @@ namespace QuanLySinhVien.Controllers
         {
             string url = "http://localhost:5275/api/Khoa/danh-sach-khoa";
             using (var client = new HttpClient())
-            {
-                var res = await client.GetAsync(url);
+			{
+                
+				var res = await client.GetAsync(url);
                 var resDele = await client.DeleteAsync(url);
 
                 if (res.IsSuccessStatusCode)

@@ -10,15 +10,19 @@ namespace QuanLySinhVien.Areas.Admin.Models.TaiKhoan
             _httpContextAccessor = httpContextAccessor;
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var httpContext = _httpContextAccessor.HttpContext;
-            if(httpContext != null)
-            {
-                var token = httpContext.Request.Cookies["Token"];
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-            return await base.SendAsync(request, cancellationToken); 
-        }
-    }
+
+		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+		{
+			var httpContext = _httpContextAccessor.HttpContext;
+			if (httpContext != null)
+			{
+				var token = httpContext.Request.Cookies["Token"];
+				request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+			}
+			return await base.SendAsync(request, cancellationToken);
+		}
+
+		//bam Ctrl + .
+
+	}
 }

@@ -11,7 +11,6 @@ using System.Text;
 namespace QuanLySinhVien.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("tai-khoan")]
     public class TaiKhoanController : Controller
     {
         private readonly HttpClient _httpClient;
@@ -29,23 +28,18 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
 
         [Route("dang-nhap")]
         [HttpPost]
-        public async Task<IActionResult> DangNhap(InputTaiKhoan input)
+        public async Task<IActionResult> DangNhap(InputDangNhap input)
         {
             string url = "http://localhost:5275/api/Authentication/auth";
             if (ModelState.IsValid)
             {
                 var data = new MultipartFormDataContent();
                 data.Add(new StringContent(input.Email), "Email");
-                data.Add(new StringContent(input.Username), "Username");
                 data.Add(new StringContent(EncryptPassword(input.Password)), "Password");
-                data.Add(new StringContent(input.Role), "Role");
                 var res = await _httpClient.PostAsync(url, data);
                 if (res.IsSuccessStatusCode)
                 {
                     var token = await res.Content.ReadAsAsync<OutputToken>();
-                    string test = token.Token;
-                    Response.Cookies.Append("Username", input.Username);
-                    //Response.Cookies.Append("JwtToken", token.Token);
                     return await AccessLogin(token.Token);
                 }
             }
@@ -58,16 +52,24 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
             var token = handler.ReadToken(Token) as JwtSecurityToken;
             var identity = new ClaimsIdentity(token.Claims, "Token");
             var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            return await CheckRole();
-        }
 
-        private async Task<IActionResult> CheckRole()
+            var role = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            var username = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+            Response.Cookies.Append("Username", username);
+            Response.Cookies.Append("Token", Token);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            return await CheckRole(role);
+        }
+       
+
+        private async Task<IActionResult> CheckRole(string? role)
         {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            var role = identity?.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
             if (role == "admin") return RedirectToAction("Index", "Home", new { Areas = "Admin" });
-            return RedirectToAction("Index", "Home", new { Areas = "" });
+            if (role == "user") return RedirectToAction("Index", "Home", new { Areas = "User" });
+            if (role == "nhansu") return RedirectToAction("Index", "Home", new { Areas = "NhanSu" });
+            return Redirect("/");
         }
 
         [Route("dang-ky")]
@@ -112,6 +114,15 @@ namespace QuanLySinhVien.Areas.Admin.Controllers
         public IActionResult TuChoi()
         {
             return View();
+        }
+
+        [Route("logout")]
+        public async Task<IActionResult> DangXuat()
+        {
+            await HttpContext.SignOutAsync();
+            Response.Cookies.Delete("Username");
+            Response.Cookies.Delete("Token");
+            return RedirectToAction("DangNhap", "TaiKhoan", new { Areas = "Admin" });
         }
     }
 }
